@@ -1,0 +1,16 @@
+void zapiszDoPliku(const char* nazwaP, const int size, St* tab)
+{
+	FILE* plik = fopen(nazwaP, "w");
+	if (plik != nullptr)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			fprintf(plik, "%d;%lf\n", tab[i].a, tab[i].b);
+		}
+		fclose(plik);
+	}
+	else
+	{
+		cout << "Nie można otworzyć pliku do zapisu." << endl;
+	}
+}
