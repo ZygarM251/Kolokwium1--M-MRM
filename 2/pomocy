@@ -1,0 +1,48 @@
+#include <iostream>
+#include <iomanip>
+#pragma warning(disable:4996)
+#include "alokacja.h"
+
+using namespace std;
+
+St* alokujTablice(const int size, St st)
+{
+	St* tab = new St[size];
+
+	for (int i = 0; i < size; i++)
+	{
+		tab[i] = st;
+	}
+	return tab;
+}
+
+void zapiszDoPliku(const char* nazwaP, const int size, St* tab)
+{
+	int licznik = 0;
+	FILE* plik = fopen(nazwaP, "w");
+	while (licznik < size)
+	{
+		fprintf(plik, "%d;%lf\n", tab->a, tab->b);
+		licznik++;
+	}
+	fclose(plik);
+}
+
+St* odczytajPlik(const char* nazwaP, const int size)
+{
+	St* tab = new St[size];
+	FILE* plik = fopen(nazwaP, "r");
+	while (true)
+	{
+		fscanf(plik, "%d;%lf\n", tab);
+		if (feof(plik)) break;
+	}
+	fclose(plik);
+	return tab;
+}
+
+void dealokacjaTablicy(St* tab)
+{
+	delete[] tab;
+	tab = nullptr;
+}
