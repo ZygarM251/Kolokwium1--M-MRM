@@ -23,7 +23,7 @@ St* odczytajPlik(const char* nazwaP, const int size)
     {
         for (int i = 0; i < size; i++)
         {
-            fscanf(plik, "%d;%lf\n", &tab[i].a, &tab[i].b);
+            fscanf(plik, "%d;%lf\n", &tab[i].a, &tab[i].b); // Poprawka: &tab[i].a i &tab[i].b
         }
         fclose(plik);
     }
