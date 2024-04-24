@@ -14,3 +14,22 @@ void zapiszDoPliku(const char* nazwaP, const int size, St* tab)
 		cout << "Nie można otworzyć pliku do zapisu." << endl;
 	}
 }
+
+St* odczytajPlik(const char* nazwaP, const int size)
+{
+    St* tab = new St[size];
+    FILE* plik = fopen(nazwaP, "r");
+    if (plik != nullptr)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            fscanf(plik, "%d;%lf\n", &tab[i].a, &tab[i].b);
+        }
+        fclose(plik);
+    }
+    else
+    {
+        cout << "Nie można otworzyć pliku do odczytu." << endl;
+    }
+    return tab;
+}
